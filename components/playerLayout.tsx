@@ -1,4 +1,4 @@
-import {Box} from  "@chakra-ui/layout";
+import { Box } from "@chakra-ui/layout";
 import Sidebar from "./sidebar";
 
 const PlayerLayout = ({ children }) => {
@@ -7,14 +7,12 @@ const PlayerLayout = ({ children }) => {
       <Box left="0" position="absolute" top="0" width="250px">
         <Sidebar />
       </Box>
-      <Box marginLeft="250px">
-      {children}
-      </Box>
+      <Box marginLeft="250px">{children}</Box>
       <Box bottom="0" left="0" position="absolute">
-      Player
+        Player
       </Box>
     </Box>
-  )
-}
+  );
+};
 
 export default PlayerLayout;
