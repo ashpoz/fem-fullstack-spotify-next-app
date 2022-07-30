@@ -5,7 +5,14 @@ import GradientLayout from "../components/gradientLayout";
 
 const Home = () => {
   return (
-    <GradientLayout color="red" roundImage>
+    <GradientLayout
+      color="red"
+      roundImage
+      subtitle="profile"
+      title="Adrian"
+      description="15 public playlists"
+      image="./me.JPG"
+    >
       <div>homepage</div>
     </GradientLayout>
   );
