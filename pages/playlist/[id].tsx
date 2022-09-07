@@ -1,15 +1,44 @@
+import GradientLayout from "../../components/gradientLayout";
 import { validateToken } from "../../lib/auth";
 import prisma from "../../lib/prisma";
+import SongsTable from "../../components/songsTable";
 
-const Playlists = () => {
-  return <div>playlists</div>;
+const getBGColor = (id) => {
+  const colors = [
+    "red",
+    "green",
+    "blue",
+    "orange",
+    "purple",
+    "gray",
+    "teal",
+    "yellow",
+  ];
+
+  return colors[id - 1] || colors[Math.floor(Math.random() * colors.length)];
+};
+
+const Playlists = ({ playlist }) => {
+  const color = getBGColor(playlist.id);
+  return (
+    <GradientLayout
+      color={color}
+      roundImage={false}
+      title={playlist.name}
+      subtitle="playlist"
+      description={`${playlist.songs.length} songs`}
+      image={`https://picsum.photos/400?random${playlist.id}`}
+    >
+      <SongsTable songs={playlist.songs} />
+    </GradientLayout>
+  );
 };
 
 export const getServerSideProps = async ({ query, req }) => {
-  const { id } = validateToken(req.cookie.TRAX_ACCESS_TOKEN);
+  const { id } = validateToken(req.cookies.TRAX_ACCESS_TOKEN);
   const [playlist] = await prisma.playlist.findMany({
     where: {
-      id: query.id,
+      id: +query.id,
       userId: id,
     },
     include: {
@@ -25,6 +54,10 @@ export const getServerSideProps = async ({ query, req }) => {
       },
     },
   });
+
+  return {
+    props: { playlist },
+  };
 };
 
 export default Playlists;
