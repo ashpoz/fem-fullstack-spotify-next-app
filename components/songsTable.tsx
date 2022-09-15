@@ -10,9 +10,9 @@ import {
   Tbody,
   IconButton,
 } from "@chakra-ui/react";
-import { BsPlayCircleFill } from "react-icons/bs";
+import { BsPlayFill } from "react-icons/bs";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { formatDate, formatTime } from "../lib/formatter";
+import { formatDate, formatTime } from "../lib/formatters";
 
 const SongsTable = ({ songs }) => {
   return (
@@ -20,7 +20,7 @@ const SongsTable = ({ songs }) => {
       <Box padding="10px" marginBottom="20px">
         <Box marginBottom="30px">
           <IconButton
-            icon={<BsPlayCircleFill fontSize="30px" />}
+            icon={<BsPlayFill fontSize="30px" />}
             aria-label="play"
             size="lg"
             colorScheme="green"
